@@ -8,16 +8,38 @@ html {
   font-family: 'Roboto', sans-serif;
 }
 
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  margin: 10px;
+}
+
+.headerImage {
+  max-width: 100%;
+  width: 60vw;
+  height: 100%;
+}
+
 h1 {
   font-size: 40px;
   margin-bottom: 0;
   padding-bottom: 0;
 }
 
+h2 {
+  font-family: 'Nothing You Could Do', cursive;
+  font-family: 'Roboto', sans-serif;
+}
+
+.thankyou {
+  margin: 0 0 20px 0;
+}
+
 h3 {
-  margin-top: 0;
   padding: 0;
-  margin-bottom: 30px;
   color: rgba(0,0,0,0.7);
 }
 
@@ -25,9 +47,14 @@ h3 {
   width:fit-content;
 }
 
+.listItems ul {
+  text-align: left;
+}
+
 .listContainer {
   display: flex;
   justify-content: center;
+  font-size: 25px;
 }
 
 .container {
@@ -67,12 +94,12 @@ button {
   height: 60px;
   width: 300px;
   border: none;
-  margin: 30px;
+  margin: 10px;
 }
 
 button:hover {
-  border: solid 1px black;
-  background-color: gray;
+  border: solid 2px rgb(186, 186, 186);
+  background-color: #eeeeee;
   cursor: pointer;
 }
 
@@ -98,6 +125,12 @@ input {
   padding: 5px;
 }
 
+.adminlogincontainer {
+  display: flex;
+  justify-content: right;
+  margin-top: 50px;
+}
+
 .adminContainer {
   display: flex;
   flex-direction: column;
@@ -111,4 +144,19 @@ input {
   display: flex;
   flex-direction: column;
 
+}
+
+.modalButtonContainer {
+  display: flex;
+  justify-content: right;
+}
+
+.modalbutton {
+  padding: 5px;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.modalbutton:hover {
+  border: none;
 }

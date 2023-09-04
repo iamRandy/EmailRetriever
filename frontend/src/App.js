@@ -1,6 +1,9 @@
 import './App.css';
 import {useState} from "react";
 import Axios from 'axios';
+import image from './IMG_4473.png';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 function App() {
 
@@ -45,7 +48,51 @@ function App() {
 
   return (
     <div className="App">
-      <div className='container'>
+      <h1>3X PROFIT in 3 MONTHS</h1>
+      <h3>Get Your FREE PDF Guide, Tutorial Videos, and Insights Today!</h3>
+      <div className="imageContainer">
+        <img className="headerImage" src={image} alt="headerImage" />
+      </div>
+      <div className="listContainer">
+        <div className="listItems">
+          <ul>
+            <li>Elevate your advertising game with our comprehensive guide!</li>
+            <li>Create retargeting audiences with affinity scores!</li>
+            <li>Hyper-target to your local or broad audience!</li>
+          </ul>
+        </div>
+      </div>
+      <input type="text" onChange={(event) => {
+        setEmail(event.target.value);
+      }} placeholder="ENTER EMAIL HERE" /><br />
+      <h2 style={{color: 'red'}}>⬇️ Click below to instantly access your FREE resources and take your advertising to the next level! ⬇️</h2>
+      
+
+      {email.trim() !== "" && (
+        <Popup trigger={
+          <button style={{ 
+            backgroundColor: buttonColor,
+            opacity: email.trim() !== "" ? 1 : 0, // Set opacity based on email value
+            transition: "opacity 0.5s ease-in-out", // Add a smooth transition
+          }} onClick={addEmail}>Submit</button>
+        } modal nested>
+          {(close) => (
+            <div className='modal'>
+              <div className='modalButtonContainer'>
+                <button className='modalbutton' style={{ height: '10%', width: '5%' }} onClick={() => close()}>
+                  X
+                </button>
+              </div>
+              <div className='content'>
+                <h2 className="thankyou" style={{ display: 'flex', justifyContent: 'center' }}>Thank you for signing up!</h2>
+              </div>
+            </div>
+          )}
+        </Popup>
+      )}
+
+
+      <div className='adminlogincontainer'>
         <div className='loginContainer'>
       
           <input type="text" className="login" placeholder="admin password" onChange={(event) => {
@@ -53,22 +100,6 @@ function App() {
           }}/>
           <button className="loginButton" onClick={checkPassword}>Login</button>
 
-        </div>
-      </div>
-      <h1>Email Retriever</h1>
-      <h3>Sub Heading</h3>
-      <image alt="emailImg"></image>
-      <input type="text" onChange={(event) => {
-        setEmail(event.target.value);
-      }} placeholder="Enter email here" /><br />
-      <button style={{backgroundColor: buttonColor}} onClick={addEmail}>Submit</button>
-      <div className="listContainer">
-        <div className="listItems">
-          <ul>
-            <li>list item 1</li>
-            <li>list item 2</li>
-            <li>list item 3</li>
-          </ul>
         </div>
       </div>
 
