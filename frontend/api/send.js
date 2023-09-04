@@ -1,3 +1,5 @@
+const db = require("../../backend/index.js")
+
 module.exports = async (req, res) => {
     try {
         const { email } = req.body;
