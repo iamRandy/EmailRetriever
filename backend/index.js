@@ -1,39 +1,19 @@
-// const express = require('express');
-// const app = express();
-// const cors = require('cors');
+const express = require('express');
+const app = express();
+const cors = require('cors');
 const mysql = require('mysql2');
 
-const pool = mysql.createPool({
+app.use(cors());
+app.use(express.json());
+
+const db = mysql.createConnection({
+    user: process.env.DB_USER,
     host: process.env.DB_HOST,
-    user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_DBNAME,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-})
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
+});
 
-pool.getConnection((err, connection) => {
-    if (err) console.error(err);
-    else {
-        console.log("Connected Successfully");
-        // Release the connection when done with it
-        connection.release();
-    }
-})
-
-module.exports = pool.promise()
-
-// app.use(cors());
-// app.use(express.json());
-
-// const db = mysql.createConnection({
-//     user: 'root',
-//     host: 'localhost',
-//     password: '7263990306750Rndy,./',
-//     database: 'emailDB',
-//     port: 3001
-// });
 
 // app.post('/send', (req, res) => {
 //     const email = req.body.email;
@@ -62,6 +42,6 @@ module.exports = pool.promise()
 //     });
 // })
 
-// app.listen(3001, () => {
-//     console.log("Server running on port 3001.");
-// })
+app.listen(3001, () => {
+    console.log("Server running on port 3001.");
+})

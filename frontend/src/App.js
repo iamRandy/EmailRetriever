@@ -20,7 +20,7 @@ function App() {
   }
 
   const showEmails = () => {
-    Axios.get('http://localhost:3001/grabEmails').then((response) => {
+    Axios.get('https://email-retriever-1hss.vercel.app/api/grab').then((response) => {
       setEmailList(response.data);
     }).catch(error => {
       console.log(error);
@@ -33,7 +33,7 @@ function App() {
       return;
     }
 
-    Axios.post("http://localhost:3001/send", {
+    Axios.post("https://email-retriever-1hss.vercel.app/api/send", {
       email: email
     }).then(() => {
       console.log("Success");
