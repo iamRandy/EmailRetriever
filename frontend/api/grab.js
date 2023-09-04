@@ -1,6 +1,15 @@
-const db = require("../../backend/index.js")
+const mysql = require('mysql2');
 
 module.exports = async (req, res) => {
+
+    const db = mysql.createConnection({
+        user: process.env.DB_USER,
+        host: process.env.DB_HOST,
+        password: process.env.DB_PASSWORD,
+        database: process.env.DB_NAME,
+        port: process.env.DB_PORT
+    });
+
     try {
         console.log("Attempting to Grab...");
         db.query("SELECT * FROM emails", (err, data) => {
