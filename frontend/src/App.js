@@ -13,6 +13,7 @@ function App() {
   
   const [buttonColor, setButtonColor] = useState("");
   const [display, setDisplay] = useState("none");
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // State to control the popup
 
   const checkPassword = () => {
     if(password.trim() === "password"){
@@ -21,6 +22,14 @@ function App() {
       console.log(password, " is incorrect");
     }
   }
+
+  const openPopup = () => {
+    setIsPopupOpen(true); // Open the popup
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false); // Close the popup
+  };
 
   const showEmails = () => {
     Axios.get('https://email-retriever-1hss.vercel.app/api/grab').then((response) => {
@@ -41,6 +50,7 @@ function App() {
     }).then(() => {
       console.log("Success");
       setButtonColor('green');
+      openPopup();
     }).catch(error => {
       console.log("Error caught: ", error);
     })
@@ -67,29 +77,32 @@ function App() {
       }} placeholder="ENTER EMAIL HERE" /><br />
       <h2 style={{color: 'red'}}>⬇️ Click below to instantly access your FREE resources and take your advertising to the next level! ⬇️</h2>
       
+      <button style={{ 
+        backgroundColor: buttonColor
+      }} onClick={addEmail}>Submit</button>
 
-      {email.trim() !== "" && (
-        <Popup trigger={
-          <button style={{ 
-            backgroundColor: buttonColor,
-            opacity: email.trim() !== "" ? 1 : 0, // Set opacity based on email value
-            transition: "opacity 0.5s ease-in-out", // Add a smooth transition
-          }} onClick={addEmail}>Submit</button>
-        } modal nested>
-          {(close) => (
-            <div className='modal'>
-              <div className='modalButtonContainer'>
-                <button className='modalbutton' style={{ height: '10%', width: '5%' }} onClick={() => close()}>
-                  X
-                </button>
-              </div>
-              <div className='content'>
-                <h2 className="thankyou" style={{ display: 'flex', justifyContent: 'center' }}>Thank you for signing up!</h2>
-              </div>
+      <Popup open={isPopupOpen} modal nested onClose={closePopup}>
+        {(close) => (
+          <div className='modal'>
+            <div className='modalButtonContainer'>
+              <button
+                className='modalbutton'
+                style={{ height: '10%', width: '5%' }}
+                onClick={() => {
+                  closePopup();
+                }}
+              >
+                X
+              </button>
             </div>
-          )}
-        </Popup>
-      )}
+            <div className='content'>
+              <h2 className="thankyou" style={{ display: 'flex', justifyContent: 'center' }}>
+                Thank you for signing up!
+              </h2>
+            </div>
+          </div>
+        )}
+      </Popup>
 
 
       <div className='adminlogincontainer'>
