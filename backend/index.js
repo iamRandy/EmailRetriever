@@ -1,10 +1,14 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());
 
+
+console.log(process.env.DB_USER);
+console.log(process.env.DB_HOST);
 const mysql = require('mysql2');
 const db = mysql.createConnection({
     user: process.env.DB_USER,
